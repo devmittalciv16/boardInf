@@ -17,6 +17,10 @@ public class Util {
         if(event.equals(Constants.BEFORE_MOVE)){ // what was the position before the roll
             logBeforeMove(workFlow);
         }
+        // inserted this code for the logAfterMoveMethod which was already written but not called.
+        if(event.equals(Constants.AFTER_MOVE)){ //tells what was the roll
+            logAfterMove(workFlow);
+        }
         if(event.equals(Constants.SHOULD_GO)){ //// what will be  the position after the roll
             logShouldGo(workFlow);
         }
@@ -45,6 +49,9 @@ public class Util {
         // event if a player is stabbed
         if(event.equals(Constants.RESTART_AGAIN)){
             logRestartAgain(workFlow);
+        }
+        if(event.equals(Constants.GOT_SIX_THRICE)){
+            logThreeSixes(workFlow);
         }
     }
 
@@ -259,6 +266,19 @@ public class Util {
             Util.log(Constants.RESTART_AGAIN, workFlow);
 
         }
+    }
+
+    // checks if you have got three sixes in a row
+    private static void logThreeSixes(WorkFlow workFlow){
+        if(workFlow.turnFirstPlayer)
+        {
+            System.out.println(workFlow.player1.name + " got three sixes in a row and so his chance is gone!");
+        }
+        else
+        {
+            System.out.println(workFlow.player2.name + " got three sixes in a row and so his chance is gone!");
+        }
+
     }
 
     public static void makeBoard(Box[][] board) {
