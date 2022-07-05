@@ -10,4 +10,6 @@ public class Constants {
     public static final String SNAKE_MOVE = "SNAKE_MOVE";
     public static final String WIN = "WIN";
     public static final String INVALID_MOVE = "INVALID_MOVE";
+    public static final String STABBED = "STABBED";
+    public static final String RESTART_AGAIN = "RESTART_AGAIN";
 }

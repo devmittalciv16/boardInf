@@ -3,6 +3,7 @@ package com.board.oops;
 
 
 public class Game {
+    // box and board are different
     private WorkFlow workFlow;
     private Box[][] board = new Box[10][10];
     public boolean isOver = false;
@@ -23,8 +24,8 @@ public class Game {
             System.out.println("GAME IS OVER");
             return;
         }
-        int roll = Util.diceRoll(workFlow);
-        Util.log(Constants.ROLL, this.workFlow);
+        int roll = Util.diceRoll(workFlow);  // workflow is passed to change the value of its roll instance.
+        Util.log(Constants.ROLL, this.workFlow); // shows what roll it is.
         makeMove(workFlow);
 
         if(workFlow.newPosition.x == 9 && workFlow.newPosition.y == 9){
@@ -32,13 +33,20 @@ public class Game {
             Util.log(Constants.WIN, workFlow);
         }
         System.out.println();
+
         Util.changeTurn(workFlow);
     }
 
     private void makeMove(WorkFlow workFlow) {
         Util.log(Constants.BEFORE_MOVE, this.workFlow);
+        /*
+        * This next if segment here checks if the position of the two players is (0,0). If it is, that means
+        * they would need 6 to start the game.
+        * */
         if(Util.initialCheck(workFlow)){
             if(workFlow.roll != 6)return;
+
+        // second chance after you get a six and your piece is open.
             int roll = Util.diceRoll(workFlow);
             System.out.println("You got a 6, you're good to go!!!");
             Util.log(Constants.ROLL, this.workFlow);
@@ -47,8 +55,13 @@ public class Game {
         workFlow.newPosition = newPosition;
         if(Util.isOverShooting(workFlow))return;
         Util.log(Constants.SHOULD_GO, workFlow);
-        Util.checkSnake(board, workFlow);
+        Util.checkSnake(board, workFlow);//changes the new position of workflow in both cases
         Util.checkLadder(board, workFlow);
+
+
+        Util.checkIfStabbed(workFlow); // checks for if the a player has been stabbed.
+
+        // after calculating the new position, now whoever turn it is, change its new position to that.
         if(workFlow.turnFirstPlayer)workFlow.player1.position = workFlow.newPosition;
         else workFlow.player2.position = workFlow.newPosition;
     }

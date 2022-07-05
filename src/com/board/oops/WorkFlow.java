@@ -12,6 +12,6 @@ public class WorkFlow {
         this.player1 = player1;
         this.player2 = player2;
         this.turnFirstPlayer = true;
-        this.newPosition = new Box();
+        this.newPosition = new Box(); // initially the new position is (0,0);
     }
 }
