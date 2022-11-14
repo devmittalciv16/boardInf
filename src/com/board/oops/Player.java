@@ -6,6 +6,6 @@ public class Player {
 
     public Player(String name){
         this.name = name;
-        position = new Box();
+        position = new Box(); // this constructor gives the starting position as 0,0;
     }
 }

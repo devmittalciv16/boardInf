@@ -1,11 +1,12 @@
 package com.board.oops;
-
+// displays the current state of the board.
 public class Box {
     int x, y;
     boolean snakeHead = false;
     boolean ladderTail = false;
     Box snakeTail;
     Box ladderHead;
+    // starts the game
     public Box(){
         this.x = 0;
         this.y = 0;
@@ -14,6 +15,7 @@ public class Box {
         this.x = x;
         this.y = y;
     }
+    // segment to call after rolling the dice
     public Box(Box old, int roll){
         this.x = old.x;
         this.y = old.y + roll;
